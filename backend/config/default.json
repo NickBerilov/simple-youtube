@@ -1,5 +1,5 @@
 {
   "storage": {
-    "filePath": ".\\video\\data.json"
+    "filePath": "./video/data.json"
   }
 }

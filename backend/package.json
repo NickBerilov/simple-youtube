@@ -4,7 +4,7 @@
   "description": "",
   "main": "src/app.ts",
   "scripts": {
-    "start": "nodemon src/app.ts",
+    "start": "nodemon --ignore 'video/' src/app.ts",
     "server": "nodemon  -w . -w .env src/app.ts",
     "client": "npm start --prefix ../frontend",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
