@@ -1,11 +1,10 @@
 import React from 'react';
-import { render, unmountComponentAtNode } from 'react-dom';
-import { BrowserRouter as Router } from 'react-router-dom'
+import ShallowRenderer from 'react-test-renderer/shallow';
 
 import Header from './Header';
 
-it('renders Header component without crashing', () => {
-  const div = document.createElement('div');
-  render(<Router><Header/></Router>, div);
-  unmountComponentAtNode(div);
-})
+it('Header matches snapshot', () => {
+  const renderer = ShallowRenderer.createRenderer();
+  const result = renderer.render(<Header />);
+  expect(result).toMatchSnapshot();
+});

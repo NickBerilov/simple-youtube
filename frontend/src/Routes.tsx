@@ -4,13 +4,14 @@ import { Route, Switch } from 'react-router-dom';
 import NotFoundPage from './pages/NotFoundPage/NotFoundPage';
 import HomePage from './pages/HomePage/HomePage';
 import UploadPage from './pages/UploadPage/UploadPage';
+import { RoutesNames } from './config/constants/RoutesNames';
 
 const Routes = () => {
   return (
     <Switch>
-      <Route exact path={'/'} component={HomePage}/>
-      <Route exact path={'/upload'} component={UploadPage}/>
-      <Route path="*" component={NotFoundPage}/>
+      <Route exact path={RoutesNames.HOME} component={HomePage}/>
+      <Route exact path={RoutesNames.UPLOAD} component={UploadPage}/>
+      <Route path={RoutesNames.NOT_FOUND} component={NotFoundPage}/>
     </Switch>
   );
 };

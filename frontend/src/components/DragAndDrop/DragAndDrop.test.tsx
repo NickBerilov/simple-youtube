@@ -1,10 +1,10 @@
 import React from 'react';
-import { render, unmountComponentAtNode } from 'react-dom';
+import ShallowRenderer from 'react-test-renderer/shallow';
 
 import DragAndDrop from './DragAndDrop';
 
-it('renders DragAndDrop component without crashing', () => {
-  const div = document.createElement('div');
-  render(<DragAndDrop handleFileChange={() => {}} />, div );
-  unmountComponentAtNode(div);
-})
+it('DragAndDrop matches snapshot', () => {
+  const renderer = ShallowRenderer.createRenderer();
+  const result = renderer.render(<DragAndDrop handleFileChange={() => {}} />);
+  expect(result).toMatchSnapshot();
+});

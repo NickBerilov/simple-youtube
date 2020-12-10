@@ -1,11 +1,10 @@
 import React from 'react';
-import { render, unmountComponentAtNode } from 'react-dom';
+import ShallowRenderer from 'react-test-renderer/shallow';
 
 import Spinner from './Spinner';
 
-
-it('renders Spinner component without crashing', () => {
-  const div = document.createElement('div');
-  render(<Spinner />, div );
-  unmountComponentAtNode(div);
-})
+it('Spinner matches snapshot', () => {
+  const renderer = ShallowRenderer.createRenderer();
+  const result = renderer.render(<Spinner/>);
+  expect(result).toMatchSnapshot();
+});

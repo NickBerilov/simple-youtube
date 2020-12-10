@@ -1,21 +1,27 @@
 import { app } from '../src/app';
-const request = require('supertest');
+import request from 'supertest';
+import * as assert from 'assert';
+import {ApiStatus} from '../src/api/ApiStatus';
 
-describe("VideoRouter", () => {
+describe('VideoRouter', () => {
   it('GET /video', async () => {
     const res = await request(app).get('/video');
 
-    expect(res.status).toBe(200);
+    expect(res.status).toBe(ApiStatus.OK);
     expect(res.body.length).toBeGreaterThanOrEqual(1);
-  })
+  });
 
   describe('POST /upload', () => {
     it('return 400 if no data file provided', async () => {
-
-    })
+        return request(app)
+            .post('/upload')
+            .field('videoTitle', 'movie title')
+            .field('videoDesc', 'movie description')
+            .expect(400);
+    });
 
     it('return video object in case of success', () => {
-      const filePath = './test.mp4';
+      const filePath = './test/test.mp4';
       return request(app)
         .post('/upload')
         .field('videoTitle', 'movie title')
@@ -27,11 +33,17 @@ describe("VideoRouter", () => {
           expect(description).toBe('movie description');
         })
         .catch((err: any) => {
-          console.error(err);
+          assert.fail(err.message);
         });
     });
   });
 
-
-})
+  describe('DELETE /video/:id', () => {
+    it('return 404 if no such video', async () => {
+      return request(app)
+          .delete('/delete/123')
+          .expect(404);
+    });
+  });
+});
 

@@ -1,12 +1,10 @@
 import React from 'react';
-import { render, unmountComponentAtNode } from 'react-dom';
-import { BrowserRouter as Router } from 'react-router-dom';
+import ShallowRenderer from 'react-test-renderer/shallow';
 
 import HomePage from './HomePage';
 
-
-it('renders HomePage without crashing', () => {
-  const div = document.createElement('div');
-  render(<Router><HomePage/></Router>, div );
-  unmountComponentAtNode(div);
-})
+it('HomePage matches snapshot', () => {
+  const renderer = ShallowRenderer.createRenderer();
+  const result = renderer.render(<HomePage/>);
+  expect(result).toMatchSnapshot();
+});

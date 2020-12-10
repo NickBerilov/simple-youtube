@@ -1,10 +1,10 @@
 import React from 'react';
-import { render, unmountComponentAtNode } from 'react-dom';
+import ShallowRenderer from 'react-test-renderer/shallow';
 
 import NotFoundPage from './NotFoundPage';
 
-it('renders NotFoundPage without crashing', () => {
-  const div = document.createElement('div');
-  render(<NotFoundPage/>, div );
-  unmountComponentAtNode(div);
-})
+it('NotFoundPage matches snapshot', () => {
+  const renderer = ShallowRenderer.createRenderer();
+  const result = renderer.render(<NotFoundPage/>);
+  expect(result).toMatchSnapshot();
+});

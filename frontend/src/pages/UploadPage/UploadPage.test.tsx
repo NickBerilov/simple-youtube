@@ -1,10 +1,10 @@
 import React from 'react';
-import { render, unmountComponentAtNode } from 'react-dom';
+import ShallowRenderer from 'react-test-renderer/shallow';
 
 import UploadPage from './UploadPage';
 
-it('renders UploadPage without crashing', () => {
-  const div = document.createElement('div');
-  render(<UploadPage/>, div );
-  unmountComponentAtNode(div);
-})
+it('UploadPage matches snapshot', () => {
+  const renderer = ShallowRenderer.createRenderer();
+  const result = renderer.render(<UploadPage/>);
+  expect(result).toMatchSnapshot();
+});

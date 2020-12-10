@@ -1,4 +1,7 @@
 {
+  "default": {
+    "port": 3001
+  },
   "storage": {
     "filePath": "./video/data.json"
   }

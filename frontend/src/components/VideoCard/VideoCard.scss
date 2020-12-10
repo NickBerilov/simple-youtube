@@ -15,6 +15,9 @@
 
       .media {
         margin-top: 50px;
+        &:hover {
+          cursor: pointer;
+        }
       }
     }
   }
