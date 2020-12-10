@@ -51,7 +51,7 @@ function UploadForm({localFile}: PropsType) {
   }, [areFieldsValid, localFile, refTitle, refDescription]);
 
   const isDisabled = useCallback(() => {
-    return !localFile && !isLoading;
+    return !localFile || isLoading;
   }, [localFile, isLoading]);
 
   return (
